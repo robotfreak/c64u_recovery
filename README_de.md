@@ -1,6 +1,6 @@
-# Wiederbelebung Commodore C64 Ultimate
+# Wiederbelebung eines Commodore C64 Ultimate
 
-Die folgende Anleitung zeigt die notwendigen Schritte um einen gebrickten C64U wieder zu beleben. C64U ist das Board welches im Commodore C64 Ultimate steckt, egal ob Basic Beige, Starlight oder der Founders Edition. Andere Boards werden mit dieser Methode nicht unterstützt, bzw. brauchen andere Firmware.
+Die folgende Anleitung zeigt die notwendigen Schritte um einen gebrickten Commodore C64 Ultimate (C64U) wieder zu beleben. Andere Boards werden mit dieser Methode derzeit nicht unterstützt, bzw. brauchen andere Firmware.
 
 Ein gebricktes Board heisst in diesem Zusammenhang, auf das Board wurde eine falsche oder fehlerhafte Firmware geflashed. Das Board ist entweder halb gebricked (FPGA startet, aber die Soft Core RISC CPU crashed, z.B. bleibt der Bildschirm schwarz) oder vollständig gebricked (keinerlei Lebenszeichen nach dem Einschalten).
 
