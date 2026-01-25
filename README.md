@@ -1,6 +1,6 @@
-# Reviving Ultimate64 Elite II / Commodore C64 Ultimate
+# Reviving a Commodore C64 Ultimate
 
-The following instructions show the necessary steps to revive a bricked U64ii or C64U. U64ii refers to the Ultimate Elite II board from Gideon. C64U is a virtually identical board found in the Commodore C64 Ultimate, regardless of whether it's the Basic Beige, Stralight, or Founders Edition. Other boards are not supported by this method or require different firmware.
+The following instructions show the necessary steps to revive a bricked Commodore C64 Ultimate (C64U). Other boards are not supported by this method or require different firmware.
 
 In this context, a bricked board means that incorrect or faulty firmware has been flashed onto the board. The board is either partially bricked (the FPGA starts, but the soft core RISC CPU crashes, e.g., the screen remains black) or completely bricked (no signs of life after powering on).
 
