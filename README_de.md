@@ -16,7 +16,7 @@ Folgende Hard bzw. Software wird benötigt
 * Philips PH2 Schraubendreher
 * Lötkolben
 
-![JTAG USB Programmer](./images/jtag-usb.JPG)
+![JTAG USB Programmer](./images/usb-usb.JPG)
 
 ![Serial USB Board](./images/usb-serial.JPG)
 
@@ -91,7 +91,7 @@ Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG
 | AD3      | TMS         | 5           |              
 | GND      | GND         | 2/10        |   
 
-![JTAG USB Connection](./images/c64u-jtag-connection.JPG)
+![JTAG USB Connection](./images/c64u-jtag-connection.png)
 
 
 #### Seriell USB
@@ -107,7 +107,7 @@ Der USB Seriell Adapter ist komplett aufgebaut und wird mit 3 Jumperkabel mit de
 | 5          | RX in       | TxD         |              
 | 6          | RTS#        |             |      
 
-![Serial USB Connection](./images/c64u-serial-connection.JPG)
+![Serial USB Connection](./images/c64u-serial-connection.png)
 
 ## U64 Board anschliessen
 
