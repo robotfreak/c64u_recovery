@@ -16,7 +16,7 @@ The following hardware and software are required:
 * Philips PH2 screwdriver
 * Soldering iron
 
-![JTAG USB Programmer](./images/jtag-usb.JPG)
+![JTAG USB Programmer](./images/usb-jtag.JPG)
 
 ![Serial USB Board](./images/usb-serial.JPG)
 
