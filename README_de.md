@@ -16,7 +16,7 @@ Folgende Hard bzw. Software wird benötigt
 * Philips PH2 Schraubendreher
 * Lötkolben
 
-![JTAG USB Programmer](./images/usb-usb.JPG)
+![JTAG USB Programmer](./images/usb-jtag.JPG)
 
 ![Serial USB Board](./images/usb-serial.JPG)
 
