@@ -1,9 +1,11 @@
 
-from jtag_xilinx import JtagClientException, JtagClient
+from jtag_xilinx import JtagClient
+from jtag_xilinx import ch
+from jtag_xilinx import logger
 import time
 import struct
-import logging
-import sys
+#import logging
+#import sys
 
 class TestFail(Exception):
     pass
@@ -12,8 +14,8 @@ class TestFailCritical(TestFail):
     pass
 
 # create logger
-logger = logging.getLogger('Tests')
-logger.setLevel(logging.INFO)
+#logger = logging.getLogger('Tests')
+#logger.setLevel(logging.INFO)
 
 dut_fpga  = 'binaries/u64_mk2_artix.bit'
 dut_appl  = 'binaries/ultimate.app'
@@ -74,16 +76,13 @@ class Ultimate64II:
         text = self.dut.user_read_console(True)
         logger.info(f"Console Output:\n{text}")
 
-    @staticmethod
-    def add_log_handler(ch):
-        global logger
-        logger.addHandler(ch)
 
 if __name__ == '__main__':
+    logger.addHandler(ch)
     u64ii = Ultimate64II()
     u64ii.startup()
     u64ii.unique_id()
     u64ii.board_revision()
     u64ii.load_fpga()
-    u64ii.start_app()
+    u64ii.load_app()
 
