@@ -91,7 +91,7 @@ The connection between the USB JTAG adapter and the 64U board is made via the JT
 | AD3 | TMS | 5 |
 | GND | GND | 2/10 |
 
-![JTAG USB Connection](./images/c64u-jtag-connection.JPG)
+![JTAG USB Connection](./images/c64u-jtag-connection.png)
 
 #### Serial USB
 
@@ -106,7 +106,7 @@ The USB serial adapter is fully assembled and connects to the console port on th
 | 5 | RX in | -- |
 | 6 | RTS# | |
 
-![Serial USB Connection](./images/c64u-serial-connection.JPG)
+![Serial USB Connection](./images/c64u-serial-connection.png)
 
 ## Connecting the U64 Board
 
