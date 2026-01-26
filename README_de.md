@@ -1,4 +1,4 @@
-# Wiederbelebung eines Commodore C64 Ultimate
+# Wiederbelebung eines gebrickten Commodore C64 Ultimate
 
 Die folgende Anleitung zeigt die notwendigen Schritte um einen gebrickten Commodore C64 Ultimate (C64U) wieder zu beleben. Andere Boards werden mit dieser Methode derzeit nicht unterstützt, bzw. brauchen andere Firmware.
 
@@ -14,7 +14,7 @@ Folgende Hard bzw. Software wird benötigt
 * FTDI USB seriell Wandler, z.B. FT232RL USB to TTL Serial
 * 8 Jumper Kabel weiblich/weiblich
 * Philips PH2 Schraubendreher
-* Lötkolben
+* Lötkolben zum Anlöten der JTAG Steckverbinder
 
 ![JTAG USB Programmer](./images/usb-jtag.JPG)
 
@@ -23,7 +23,7 @@ Folgende Hard bzw. Software wird benötigt
 
 ### Software
 
-* nur getetstet mit Linux OS z.B: Ubuntu. Nicht getetstet mit Windows oder Mac OS
+* nur getetstet mit Linux OS z.B: Ubuntu 24.04LTS. Nicht getetstet mit Windows oder Mac OS
 * Development Tools: git, python3, pip3 optional esp-idf, risc32-gcc
 
 ## Installation
@@ -46,7 +46,7 @@ Falls etwas fehlt kann dies nach installiert werden, durch:
 sudo apt install -y python3 pip3 git
 ``` 
 
-Es werden noch diverse Python Pakete benötigt. In aktuellen Ubuntu Versionen sollten Python Pakete allerdings nicht mehr global installiert werden. Anstelle dessen wird eine virtuelle Python Umgebung eingerichtet.
+Es werden noch einige Python Pakete benötigt. In aktuellen Ubuntu Versionen sollten Python Pakete allerdings nicht mehr global installiert werden. Anstelle dessen wird eine virtuelle Python Umgebung eingerichtet.
 
 Wir erstellen dazu einen Unterordner 'c64' und erstellen darin die virtuelle Umgebung:
 
@@ -113,7 +113,7 @@ Der USB Seriell Adapter ist komplett aufgebaut und wird mit 3 Jumperkabel mit de
 
 Vor dem Anschliessen der Jumperkabel an das U64 Board:
 
-* Board stromlos machen. C64U Stromversorgungsstecker ziehen!
+* Board stromlos machen. C64U Stromversorgungsstecker ziehen! Achtung bei eingestecktem Stromversorgungsstecker sind schon einige Komponenten des Boards aktiv, wie z.B. der ESP32 Wifi Chip.
 * Jumperkabel für JTAG und Console stecken und Verkabelung überprüfen
 * JTAG USB Programmer und USB Serial Board an freien USB Ports am PC anstecken.
 * C64U Stromversorgungsstecker anstecken
@@ -129,7 +129,11 @@ cd c64
 python3 -m venv ./myenv
 cd c64u_recovery
 ```
+Das USB Serial Board kann zur Ausgabe von Debug Nachrichten verwendet werden. Dazu wird:
+* ein neues Terminal geöffnet
+* ein geeignetes serielles Terminalprogramm z.B. minicom mit dem folgenen Befehl starten: 'minicom -b 115200 -D /dev/ttyUSB0'
 
+   
 Das Skript recovery.py dient zum Laden des FPGA Bitcode und Ultimate Applikation in den DRAM. Der Flash wird dabei nicht geändert. Nach einem Power Cycle würde das das Board einfach wieder das Programm aus dem Flash ausführen. 
 
 Gestartet wird das Skript mit:
