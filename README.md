@@ -1,6 +1,6 @@
-# Reviving a Commodore C64 Ultimate
+# Reviving a bricked Commodore C64 Ultimate
 
-The following instructions show the necessary steps to revive a bricked Commodore C64 Ultimate (C64U). Other boards are not supported by this method or require different firmware.
+The following instructions show the necessary steps to revive a bricked Commodore C64 Ultimate (C64U). Other boards are not supported by this method  at the moment. They may require different firmware.
 
 In this context, a bricked board means that incorrect or faulty firmware has been flashed onto the board. The board is either partially bricked (the FPGA starts, but the soft core RISC CPU crashes, e.g., the screen remains black) or completely bricked (no signs of life after powering on).
 
@@ -14,7 +14,7 @@ The following hardware and software are required:
 * FTDI USB to serial converter, e.g., FT232RL USB to TTL Serial
 * 8 female-to-female jumper wires
 * Philips PH2 screwdriver
-* Soldering iron
+* Soldering iron for the JTAG pin headers
 
 ![JTAG USB Programmer](./images/usb-jtag.JPG)
 
@@ -23,8 +23,8 @@ The following hardware and software are required:
 
 ### Software
 
-* Tested only with Linux OS, e.g., Ubuntu. Not tested with Windows or Mac OS.
-* Development tools: git, python3, pip3; optionally esp-idf, risc32-gcc
+* Tested only with Linux OS, e.g., Ubuntu 24.04LTS. Not tested with Windows or Mac OS.
+* Development tools: git, python3, pip3. Optionally esp-idf, risc32-gcc if you want to build your own firmware
 
 ## Installation
 
@@ -46,9 +46,9 @@ If anything is missing, you can install it afterward by running:
 sudo apt install -y python3 pip3 git
 ```
 
-Several Python packages are still required. However, in current Ubuntu versions, Python packages should no longer be installed globally. Instead, a virtual Python environment is set up.
+Some Python packages are still required. However, in current Ubuntu versions, Python packages should no longer be installed globally. Instead, a virtual Python environment is set up.
 
-To do this, we create a subfolder 'c64' and create the virtual environment within it:
+To do this, we create a subfolder 'c64' and install the virtual environment within it:
 
 ```
 mkdir c64 && cd c64
@@ -60,7 +60,7 @@ Next, we start the virtual environment and install the necessary packages.
 For the command-line version, one package is sufficient:
 
 ```
-myenv/bin/activate
+. myenv/bin/activate
 pip3 install pyftdi
 ```
 
@@ -95,15 +95,15 @@ The connection between the USB JTAG adapter and the 64U board is made via the JT
 
 #### Serial USB
 
-The USB serial adapter is fully assembled and connects to the console port on the 64U board using two jumper wires. The 3.3V pins are not connected. The 5V/3.3V jumper must be set to 3.3V.
+The USB serial adapter is fully assembled and connects to the console port on the 64U board using two jumper wires (pin 1 and 5 on the USB serial board). The 3.3V and the TX out pins are not connected. The 5V/3.3V jumper on the Serial USB board must be set to 3.3V.
 
 | USB Serial | Label | 64U Console |
 |------------|--------------|-------------|
 | 1 | GND | GND |
 | 2 | CTS# | -- |
 | 3 | VCC | -- |
-| 4 | TX out | RxD |
-| 5 | RX in | -- |
+| 4 | TX out | -- |
+| 5 | RX in | TxD |
 | 6 | RTS# | |
 
 ![Serial USB Connection](./images/c64u-serial-connection.png)
@@ -112,11 +112,11 @@ The USB serial adapter is fully assembled and connects to the console port on th
 
 Before connecting the jumper cables to the U64 board:
 
-* Disconnect the board from power. Unplug the U64 power supply connector!
+* Disconnect the board from power. Unplug the U64 power supply connector!. Keep in mind: Parts of the board will always under power, when the power supply connector is inserted (for example the ESP32 Wifi chip).
 * Connect the jumper cables for JTAG and Serial Console and doublecheck the wiring.
 * Connect the JTAG USB Programmer and USB Serial Board to free USB ports on the PC.
 * Connect the U64 power supply connector.
-* Turn on the U64 board. Briefly move the rocker switch upwards.
+* Turn on the U64 board. Briefly move the rocker switch upwards. It should power up the C64U and the JTAG board 
 
 ## C64U Recovery Script
 
@@ -129,7 +129,10 @@ cd c64
 python3 -m venv ./myenv
 cd c64u_recovery
 ```
-The recovery.py script is used to load the FPGA bitcode and the Ultimate Application into DRAM.  The flash memory is not modified. After a power cycle, the board woud just restart with the program from the FLASH memory.
+The recovery.py script is used to load the FPGA bitcode and the Ultimate Application into DRAM.  The flash memory is not modified. After a power cycle, the board woud just restart with the program from the FLASH memory. The USB Serial board can be used to show Debug Output messages. To use it:
+
+* open a second terminal
+* run a serial program like minicom with 'minicom -D /dev/ttyUSB0 -b 115200' 
 
 The recovery script is started with:
 
