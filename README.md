@@ -1,6 +1,6 @@
-# Reviving a bricked Commodore C64 Ultimate
+# Reviving a Ultimate Elite II / Commodore C64 Ultimate board
 
-The following instructions show the necessary steps to revive a bricked Commodore C64 Ultimate (C64U). Other boards are not supported by this method  at the moment. They may require different firmware.
+The following instructions show the necessary steps to revive a bricked Ultimate Elite II (U64ii) or a Commodore C64 Ultimate (C64U). Other boards are not supported by this method or may require different firmware.
 
 In this context, a bricked board means that incorrect or faulty firmware has been flashed onto the board. The board is either partially bricked (the FPGA starts, but the soft core RISC CPU crashes, e.g., the screen remains black) or completely bricked (no signs of life after powering on).
 
@@ -24,7 +24,7 @@ The following hardware and software are required:
 ### Software
 
 * Tested only with Linux OS, e.g., Ubuntu 24.04LTS. Not tested with Windows or Mac OS.
-* Development tools: git, python3, pip3. Optionally esp-idf, risc32-gcc if you want to build your own firmware
+* Development tools: git, python3, pip3.
 
 ## Installation
 
@@ -81,7 +81,10 @@ The hardware requires some preparation and careful wiring. Errors can damage the
 
 The USB JTAG adapter comes with pin headers that must be soldered on.
 
-The connection between the USB JTAG adapter and the 64U board is made via the JTAG port P5 using 5 jumper wires. The 3.3V pins are not connected.
+The connection between the USB JTAG adapter and the 64U board is made via the JTAG port P5 using 5 jumper wires. The 3.3V pins should only be connected, when you programmer has an target voltage detection input. The Adafruit FT232 programmer does not have this input.
+
+![JTAG Pinout](./images/jtag-pinout.jpg)
+
 
 | USB JTAG | Label | 64U P5 Pin |
 |----------|-------------|-------------|
@@ -95,7 +98,7 @@ The connection between the USB JTAG adapter and the 64U board is made via the JT
 
 #### Serial USB
 
-The USB serial adapter is fully assembled and connects to the console port on the 64U board using two jumper wires (pin 1 and 5 on the USB serial board). The 3.3V and the TX out pins are not connected. The 5V/3.3V jumper on the Serial USB board must be set to 3.3V.
+Optionally you can watch the debug output of the serial console. The USB serial adapter is fully assembled and connects to the console port on the 64U board using two jumper wires. The 3.3V pins are not connected. The 5V/3.3V jumper must be set to 3.3V.
 
 | USB Serial | Label | 64U Console |
 |------------|--------------|-------------|
@@ -140,4 +143,6 @@ The recovery script is started with:
 python3 ./recovery.py
 ```
 
-The 64U board should start and display the BASIC prompt on the screen. Unfortunately the script does not work at the moment. The program just stops during initializing the SID.
+## Final steps
+
+The 64U board should start and display the BASIC prompt on the screen. Switch to the menu and do a system update by flashing the 'update.ue2' package

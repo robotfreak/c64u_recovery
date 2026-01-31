@@ -1,6 +1,6 @@
-# Wiederbelebung eines gebrickten Commodore C64 Ultimate
+# Wiederbelebung eines Ultimate Elite II / Commodore C64 Ultimate Boards
 
-Die folgende Anleitung zeigt die notwendigen Schritte um einen gebrickten Commodore C64 Ultimate (C64U) wieder zu beleben. Andere Boards werden mit dieser Methode derzeit nicht unterstützt, bzw. brauchen andere Firmware.
+Die folgende Anleitung zeigt die notwendigen Schritte um ein gebricktes Ultimate Elite II oder ein Commodore C64 Ultimate (C64U) Board wieder zu beleben. Andere Boards werden mit dieser Methode derzeit nicht unterstützt, bzw. brauchen andere Firmware.
 
 Ein gebricktes Board heisst in diesem Zusammenhang, auf das Board wurde eine falsche oder fehlerhafte Firmware geflashed. Das Board ist entweder halb gebricked (FPGA startet, aber die Soft Core RISC CPU crashed, z.B. bleibt der Bildschirm schwarz) oder vollständig gebricked (keinerlei Lebenszeichen nach dem Einschalten).
 
@@ -81,7 +81,10 @@ Die Hardware bedarf einiger Vorbereitung und sorgfältige Verdrahtung. Fehler k�
 
 Der USB JTAG Adapter kommt mit Stiftleisten, die erst noch mit einem Lötkolben angelötet werden müsssen.
 
-Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG Port P5 mit 5 Jumperkabel. Die 3V3 werden nicht verbunden. 
+Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG Port P5 mit 5 Jumperkabel. Die 3V3 werden nur verbunden, falls der Programmer über eine Target Spannungs Detektierung verfügt. Der Adafruit FT232H JTAG Adapter hat das nicht.
+
+![JTAG Pinout](./images/jtag-pinout.jpg)
+
 
 | USB JTAG | Bezeichnung | 64U P5 Pin  |
 |----------|-------------|-------------|
@@ -96,7 +99,7 @@ Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG
 
 #### Seriell USB
 
-Der USB Seriell Adapter ist komplett aufgebaut und wird mit 3 Jumperkabel mit dem Console Port auf dem 64U Board verbunden. Die 3V3 werden nicht verbunden. Der Jumper 5v/3.3V muss auf 3.3V gesteckt werden.
+Optional kann man über die serielle Console die Debug Ausgaben des Boards mitlauschen. Der USB Seriell Adapter ist komplett aufgebaut und wird mit 3 Jumperkabel mit dem Console Port auf dem 64U Board verbunden. Die 3V3 werden nicht verbunden. Der Jumper 5v/3.3V muss auf 3.3V gesteckt werden.
 
 | USB Serial | Bezeichnung | 64U Console |
 |------------|-------------|-------------|
@@ -141,6 +144,6 @@ Gestartet wird das Skript mit:
 ```
 python3 ./recovery.py
 ```
+## Letzte Schritte
 
-Das C64U Board sollte starten und den BASIC Prompt auf dem Bildschirm anzeigen. Leider funktioniert das Skript derzeit nicht. Das geladene Programm bleibt während der Initialisierung des SID stecken :(.
-
+Das C64U Board sollte starten und den BASIC Prompt auf dem Bildschirm anzeigen. Gehe in das Menü und starte ein System Update.
