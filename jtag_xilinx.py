@@ -261,12 +261,12 @@ class JtagClient:
                 bytes_read += len(buffer)
                 self.user_write_memory(addr, buffer + b'\x00\x00\x00\x00\x00\x00\x00\x00')
                 addr += 16384
-                #l4 = len(buffer) // 4
-                #for i in range(l4):
-                #    checksum += struct.unpack("<L", buffer[i*4:i*4+4])[0]
+                l4 = len(buffer) // 4
+                for i in range(l4):
+                    checksum += struct.unpack("<L", buffer[i*4:i*4+4])[0]
 
             logger.info(f"Uploaded {bytes_read:06x} bytes.")
-            #logger.info(f"Checksum: {checksum & 0xFFFFFFFF:08x}")
+            logger.info(f"Checksum: {checksum & 0xFFFFFFFF:08x}")
 
         if bytes_read == 0:
             logger.error(f"Reading file {name} failed -> Can't upload to board.")

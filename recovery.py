@@ -18,7 +18,7 @@ class TestFailCritical(TestFail):
 #logger.setLevel(logging.INFO)
 
 dut_fpga  = 'binaries/u64_mk2_artix.bit'
-dut_appl  = 'binaries/ultimate.app'
+dut_appl  = 'binaries/ultimate.bin'
 
 class Ultimate64II:
     def __init__(self):
@@ -66,13 +66,17 @@ class Ultimate64II:
         
         self.dut.xilinx_load_fpga(dut_fpga)
 
+        time.sleep(1)
         self.dut.user_set_outputs(0x80) # Unreset
+        text = self.dut.user_read_console(True)
+        logger.info(f"Console Output:\n{text}")
 
     def load_app(self):
         """Run Application on DUT"""
         self.dut.user_upload(dut_appl, 0x30000)
         self.dut.user_run_app(0x30000)
         time.sleep(0.5)
+        self.dut.user_set_outputs(0x00) # Unreset       
         text = self.dut.user_read_console(True)
         logger.info(f"Console Output:\n{text}")
 
