@@ -83,7 +83,7 @@ Der USB JTAG Adapter kommt mit Stiftleisten, die erst noch mit einem Lötkolben 
 
 Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG Port P5 mit 5 Jumperkabel. Die 3V3 werden nur verbunden, falls der Programmer über eine Target Spannungs Detektierung verfügt. Der Adafruit FT232H JTAG Adapter hat das nicht.
 
-![JTAG Pinout](./images/jtag-pinout.jpg)
+![JTAG Pinout](./images/jtag-pinout.png)
 
 
 | USB JTAG | Bezeichnung | 64U P5 Pin  |

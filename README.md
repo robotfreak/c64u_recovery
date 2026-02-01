@@ -83,7 +83,7 @@ The USB JTAG adapter comes with pin headers that must be soldered on.
 
 The connection between the USB JTAG adapter and the 64U board is made via the JTAG port P5 using 5 jumper wires. The 3.3V pins should only be connected, when you programmer has an target voltage detection input. The Adafruit FT232 programmer does not have this input.
 
-![JTAG Pinout](./images/jtag-pinout.jpg)
+![JTAG Pinout](./images/jtag-pinout.png)
 
 
 | USB JTAG | Label | 64U P5 Pin |
