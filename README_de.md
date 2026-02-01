@@ -11,67 +11,28 @@ Folgende Hard bzw. Software wird benötigt
 
 * PC / Laptop 
 * FT232H basierter USB JTAG Programmer, z.B. Adafruit FT232H Board
-* FTDI USB seriell Wandler, z.B. FT232RL USB to TTL Serial
-* 8 Jumper Kabel weiblich/weiblich
+* 5 Jumper Kabel weiblich/weiblich
 * Philips PH2 Schraubendreher
 * Lötkolben zum Anlöten der JTAG Steckverbinder
 
 ![JTAG USB Programmer](./images/usb-jtag.JPG)
 
-![Serial USB Board](./images/usb-serial.JPG)
-
-
-### Software
-
-* nur getetstet mit Linux OS z.B: Ubuntu 24.04LTS. Nicht getetstet mit Windows oder Mac OS
-* Development Tools: git, python3, pip3 optional esp-idf, risc32-gcc
-
-## Installation
-
-Zunächst werden die notwendigen Tools installiert.
 
 ### Software Installation
 
-Git, Python3 und Pip3 sind normalerweise vorinstalliert. Die Installation testen kann man im Terminal durch:
+### Linux
+1. Terminal öffnen.
+2. `./install.sh` ausführen.
+3. Gerät neu einstecken.
 
-```
-python3 --version
-pip3 --version
-git --version
-```
+### Windows
+1. `install.bat` ausführen.
+2. [Zadig](https://zadig.akeo.ie/) herunterladen und den Treiber für den FT232H auf `libusb-win32` oder `WinUSB` ändern.
 
-Falls etwas fehlt kann dies nach installiert werden, durch:
+### macOS
+1. Homebrew installieren und: `brew install libusb`
+2. `./install.sh` ausführen.
 
-```
-sudo apt install -y python3 pip3 git
-``` 
-
-Es werden noch einige Python Pakete benötigt. In aktuellen Ubuntu Versionen sollten Python Pakete allerdings nicht mehr global installiert werden. Anstelle dessen wird eine virtuelle Python Umgebung eingerichtet.
-
-Wir erstellen dazu einen Unterordner 'c64' und erstellen darin die virtuelle Umgebung:
-
-```
-mkdir c64 && cd c64
-python3 -m venv ./myenv
-```
-
-Als nächstes starten wir die virtuelle Umgebung und installieren die notwendigen Pakete.
-
-Für die Kommandozeilen Version reicht ein Paket:
-
-```
-. myenv/bin/activate
-pip3 install pyftdi
-```
-
-Der letzte Schritt umfasst die Erkennung des JTAG Adapters und der Zugriff darauf als Standard User:
-
-```
-sudo cp ./60-openocd.rules /etc/udev/rules.d/
-sudo udevadm control --reload-rules
-sudo udevadm trigger
-sudo usermod -a -G plugdev $USER
-```
 
 ### Hardware Installation
 
@@ -97,21 +58,6 @@ Die Anbindung zwischen USB JTAG Adapter und dem 64U board erfolgt über den JTAG
 ![JTAG USB Connection](./images/c64u-jtag-connection.png)
 
 
-#### Seriell USB
-
-Optional kann man über die serielle Console die Debug Ausgaben des Boards mitlauschen. Der USB Seriell Adapter ist komplett aufgebaut und wird mit 3 Jumperkabel mit dem Console Port auf dem 64U Board verbunden. Die 3V3 werden nicht verbunden. Der Jumper 5v/3.3V muss auf 3.3V gesteckt werden.
-
-| USB Serial | Bezeichnung | 64U Console |
-|------------|-------------|-------------|
-| 1          | GND         | GND         |              
-| 2          | CTS#        | --          |              
-| 3          | VCC         | --          |              
-| 4          | TX out      | RxD         |              
-| 5          | RX in       | TxD         |              
-| 6          | RTS#        |             |      
-
-![Serial USB Connection](./images/c64u-serial-connection.png)
-
 ## U64 Board anschliessen
 
 Vor dem Anschliessen der Jumperkabel an das U64 Board:
@@ -124,26 +70,12 @@ Vor dem Anschliessen der Jumperkabel an das U64 Board:
 
 ## C64U Recovery Skript
 
-Dazu muss das Python Virtual Environment aktiviert werden.
-Die Skripte werden aus dem Ordner 'c64u_recovery' ausgeführt. 
-
-```
-cd c64
-python3 -m venv ./myenv
-cd c64u_recovery
-```
-Das USB Serial Board kann zur Ausgabe von Debug Nachrichten verwendet werden. Dazu wird:
-* ein neues Terminal geöffnet
-* ein geeignetes serielles Terminalprogramm z.B. minicom mit dem folgenen Befehl starten: 'minicom -b 115200 -D /dev/ttyUSB0'
-
-   
+Verwende einfach den mitgelieferten Starter für deine Plattform:
+- **Linux/macOS:** `./run.sh`
+- **Windows:** `run.bat`
+-    
 Das Skript recovery.py dient zum Laden des FPGA Bitcode und Ultimate Applikation in den DRAM. Der Flash wird dabei nicht geändert. Nach einem Power Cycle würde das das Board einfach wieder das Programm aus dem Flash ausführen. 
 
-Gestartet wird das Skript mit:
-
-```
-python3 ./recovery.py
-```
 ## Letzte Schritte
 
-Das C64U Board sollte starten und den BASIC Prompt auf dem Bildschirm anzeigen. Gehe in das Menü und starte ein System Update.
+Das C64U Board sollte starten und den BASIC Prompt auf dem Bildschirm anzeigen. Öffne im Menü  den Datei Browser und starte ein System Update.

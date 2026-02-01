@@ -11,7 +11,7 @@ The following hardware and software are required:
 
 * PC / Laptop
 * FT232H-based USB JTAG programmer, e.g., Adafruit FT232H board
-* 8 female-to-female jumper wires
+* 5 female-to-female jumper wires
 * Philips PH2 screwdriver
 * Soldering iron for the JTAG pin headers
 
@@ -72,8 +72,8 @@ Use the starter script for your platform:
 - **Linux/macOS:** `./run.sh`
 - **Windows:** `run.bat`
 
-The recovery.py script is used to load the FPGA bitcode and the Ultimate Application into DRAM.  The flash memory is not modified. After a power cycle, the board woud just restart with the program from the FLASH memory. 
+The recovery.py script is used to load the FPGA bitcode and the Ultimate Application into DRAM. The flash memory is not modified. After a power cycle, the board woud just restart with the program from the FLASH memory. 
 
 ## Final steps
 
-The 64U board should start and display the BASIC prompt on the screen. Switch to the menu and do a system update by flashing the 'update.ue2' package
+The 64U board should start and display the BASIC prompt on the screen. Open the menu start the File Browser. Do a system update by selecting the 'update.ue2' package and run it.
