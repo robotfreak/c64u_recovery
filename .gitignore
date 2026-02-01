@@ -1,0 +1,17 @@
+# Virtual Environment (WICHTIG: Niemals das venv hochladen!)
+.venv/
+venv/
+ENV/
+
+# Python Bytecode (beschleunigt den Start, gehört aber nicht ins Repo)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Betriebssystem-spezifische Dateien
+.DS_Store
+Thumbs.db
+
+# IDE-Konfigurationen (optional)
+.vscode/
+.idea/
