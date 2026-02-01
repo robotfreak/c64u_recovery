@@ -27,7 +27,8 @@ Folgende Hard bzw. Software wird benötigt
 
 ### Windows
 1. `install.bat` ausführen.
-2. [Zadig](https://zadig.akeo.ie/) herunterladen und den Treiber für den FT232H auf `libusb-win32` oder `WinUSB` ändern.
+2. 
+3. [Zadig](https://zadig.akeo.ie/) herunterladen und den Treiber für den FT232H auf `libusb-win32` oder `WinUSB` ändern.
 
 ### macOS
 1. Homebrew installieren und: `brew install libusb`
@@ -78,4 +79,8 @@ Das Skript recovery.py dient zum Laden des FPGA Bitcode und Ultimate Applikation
 
 ## Letzte Schritte
 
-Das C64U Board sollte starten und den BASIC Prompt auf dem Bildschirm anzeigen. Öffne im Menü  den Datei Browser und starte ein System Update.
+Das C64U Board sollte mit dem Commodore Basic starten. 
+* Öffnen sie das Ultimate Menü  
+* Starten sie den Disk File Browser
+* Selektieren sie das korrekte update.ue2 File
+* starten sie das System Update durch Auswahl von 'Run Update'
